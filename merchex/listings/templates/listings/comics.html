@@ -1,0 +1,23 @@
+
+{% extends 'listings/base.html' %}
+
+
+{% block content %}
+        
+
+<h1>Hello Django !</h1>
+<p>
+            Mes comics préférés sont :
+            <a href="{% url 'comic-create' %}">Créer un nouveau comic</a>
+
+
+            {% for comic in one_comic %}
+            <li>
+                <li><a href="{% url 'comic-detail' comic.id %}">{{ comic.title }}</a></li>
+                - <a href="{% url 'comic-update' comic.id %}">[modifier]</a>
+            </li>
+            {% endfor %}
+
+</p>
+{% endblock %}
+

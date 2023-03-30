@@ -1,0 +1,21 @@
+
+{% extends 'listings/base.html' %}
+
+
+{% block content %}
+ <h2>le nom du comics est : {{comic.title}}</h2>
+
+ <ul>
+    <li>le comics suit les aventures de {{comic.hero}} </li>
+    <li>son prix est de :{{comic.price}}</li>
+ </ul>
+ <p>
+    {{comic.resume}}
+ </p>
+
+ <a href="{% url 'comic-update' comic.id %}">Modifier ce comic</a>
+ <a href="{% url 'comic-delete' comic.id %}">Supprimer ce comic</a>
+
+ <a href="{% url 'comic-list' %}">Retourner à la liste des comics</a>
+
+{% endblock %}
