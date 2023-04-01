@@ -20,5 +20,5 @@ class ComicForm(forms.ModelForm):
 class BandForm(forms.ModelForm):
     class Meta:
         model = Band
-        exclude = ('active', 'official_homepage')  # ajoutez cette ligne
+        exclude = ('active', 'official_homepage')  
 

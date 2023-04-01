@@ -9,27 +9,19 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect 
 
 
-def band_list(request):  # renommer la fonction de vue
+def band_list(request):  
     bands = Band.objects.all()
     return render(request,
-                  'listings/band_list.html',  # pointe vers le nouveau nom de modèle
+                  'listings/band_list.html',  
                   {'bands': bands})
 
 
-def band_detail(request, id):  # notez le paramètre id supplémentaire
+def band_detail(request, id):  
     band = Band.objects.get(id=id)
     # nous passons l'id au modèle
     return render(request, 'listings/band_detail.html', {'band': band})
 
 
-def about(request):
-    one_comic = Comic.objects.all()
-    return render(request, 'listings/comics.html', {"one_comic": one_comic})
-
-
-def comic_detail(request, id):
-    comic = Comic.objects.get(id=id)
-    return render(request, 'listings/comic_detail.html', {'comic': comic})
 
 
 def contact(request):
@@ -48,7 +40,6 @@ def contact(request):
     # ci-dessous et afficher à nouveau le formulaire (avec des erreurs).
 
     else:
-        # ceci doit être une requête GET, donc créer un formulaire vide
         form = ContactUsForm()
 
     return render(request,
@@ -70,6 +61,10 @@ def band_update(request, id):
                             'listings/band_update.html',
                             {'form': form})
 
+
+
+##### CRUD comics #####
+
 def comic_create(request):
         if request.method == 'POST':
             form = ComicForm(request.POST)
@@ -85,6 +80,14 @@ def comic_create(request):
             'listings/comic_create.html',
             {'form': form})
 
+def about(request):
+    one_comic = Comic.objects.all()
+    return render(request, 'listings/comics.html', {"one_comic": one_comic})
+
+
+def comic_detail(request, id):
+    comic = Comic.objects.get(id=id)
+    return render(request, 'listings/comic_detail.html', {'comic': comic})
 
 def comic_update(request, id):
     comic = Comic.objects.get(id=id)
@@ -113,3 +116,6 @@ def comic_delete(request, id):
         return redirect('comic-list')
 
     return render(request, 'listings/comic_delete.html', {'comic' : comic})
+
+
+#### FIN CRUD comics ####
